@@ -1,39 +1,127 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <!-- meta tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-
-    <!-- main css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo Fácil</title>
     <link rel="stylesheet" href="style.css">
-
-    <title>Pixel Art</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>pixelart</h1>
+        <h1>Currículo Fácil <i class="fa-solid fa-sheet-plastic"></i></h1>
     </header>
-
     <main>
-        <aside>
-            <span class="option-title">Tamanho:</span>
-            <input type="number" class="input-size" min="4" value="10">
+        <form id="resumeForm">
+            <section>
+                <h2>Informações Pessoais <i class="fa-regular fa-user"></i></h2>
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" placeholder="Nome Completo" required>
+                
+                <label for="address">Endereço</label>
+                <input type="text" id="address" placeholder="Endereço">
 
-            <span class="option-title">Cor:</span>
-            <input type="color" class="input-color">
+                <label for="phone1">Telefone 1</label>
+                <input type="tel" id="phone1" placeholder="(00) 00000-0000" required>
 
-            <span class="option-title">Cores usadas:</span>
-            <section class="used-colors"></section>
+                <label for="phone2">Telefone 2</label>
+                <input type="tel" id="phone2" placeholder="(00) 00000-0000">
 
-            <button class="button-save">Baixar imagem</button>
-        </aside>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email" required>
 
-        <section class="canvas"></section>
-        <div class="resize"></div>
+                <label for="linkedin">LinkedIn</label>
+                <input type="text" id="linkedin" placeholder="LinkedIn">
+
+                <label for="photo">Foto</label>
+                <input type="file" id="photo" accept="image/*">
+            </section>
+
+            <section id="professionalSummary">
+                <h2>Resumo <i class="fa-regular fa-address-card"></i></h2>
+                <textarea class="professional-summary" placeholder="Breve resumo das suas habilidades e experiências mais relevantes."></textarea>
+            </section>
+            
+            <section>
+                <h2>Educação <i class="fa-solid fa-book"></i></h2>
+                <div id="educationContainer">
+                    <div class="education-entry">
+                        <input type="text" class="degree" placeholder="Nome do Curso">
+                        <input type="text" class="institution" placeholder="Instituição | Local">
+                        <input type="text" class="education-dates" placeholder="Mês/Ano de Início – Mês/Ano de Término">
+                        <textarea class="education-highlights" placeholder="Destaque 1: Exemplo de um projeto ou conquista importante."></textarea>
+                        <textarea class="education-highlights" placeholder="Destaque 2: Atividades relevantes, como participação em clubes, pesquisas, etc."></textarea>
+                        <button type="button" class="remove-button">Remover <i class="fa-solid fa-user-xmark"></i></button>
+                    </div>
+                </div>
+                <button type="button" id="addEducation">Adicionar Educação <i class="fa-solid fa-user-plus"></i></button>
+            </section>
+
+           
+
+            <section>
+                <h2>Experiência Profissional <i class="fa-solid fa-briefcase"></i></h2>
+                <div id="experienceContainer">
+                    <div class="experience-entry">
+                        <input type="text" class="job-title" placeholder="Cargo">
+                        <input type="text" class="company-name" placeholder="Nome da Empresa | Local">
+                        <input type="text" class="job-dates" placeholder="Mês/Ano de Início – Mês/Ano de Término">
+                        <textarea class="job-responsibilities" placeholder="Responsabilidade 1: Descrição breve focando nos resultados."></textarea>
+                        <textarea class="job-responsibilities" placeholder="Responsabilidade 2: Foco nas habilidades técnicas e interpessoais."></textarea>
+                        <textarea class="job-responsibilities" placeholder="Responsabilidade 3: Destaque algum projeto específico."></textarea>
+                        <button type="button" class="remove-button">Remover <i class="fa-solid fa-user-xmark"></i></button>
+                    </div>
+                </div>
+                <button type="button" id="addExperience">Adicionar Experiência <i class="fa-solid fa-user-plus"></i></button>
+            </section>
+
+            <section>
+                <h2>Habilidades <i class="fa-solid fa-lightbulb"></i></h2>
+                <textarea id="skills" placeholder="Técnicas e interpessoais"></textarea>
+            </section>
+
+            <section>
+                <h2>Projetos <i class="fa-solid fa-code"></i></h2>
+                <div id="projectsContainer">
+                    <div class="project-entry">
+                        <input type="text" class="project-name" placeholder="Nome do Projeto">
+                        <textarea class="project-description" placeholder="Breve descrição do projeto, tecnologias usadas e o resultado final."></textarea>
+                        <button type="button" class="remove-button">Remover <i class="fa-solid fa-user-xmark"></i></button>
+                    </div>
+                </div>
+                <button type="button" id="addProject">Adicionar Projeto <i class="fa-solid fa-user-plus"></i></button>
+            </section>
+
+            <section>
+                <h2>Certificações <i class="fa-solid fa-award"></i></h2>
+                <div id="certificationsContainer">
+                    <div class="certification-entry">
+                        <input type="text" class="certification-name" placeholder="Nome da Certificação">
+                        <input type="text" class="certification-institution" placeholder="Instituição | Data de Conclusão">
+                        <textarea class="certification-description" placeholder="Descrição breve, se necessário."></textarea>
+                        <button type="button" class="remove-button">Remover <i class="fa-solid fa-user-xmark"></i></button>
+                    </div>
+                </div>
+                <button type="button" id="addCertification">Adicionar Certificação <i class="fa-solid fa-user-plus"></i></button>
+            </section>
+
+            <section>
+                <h2>Idiomas <i class="fa-solid fa-language"></i></h2>
+                <textarea id="languages" placeholder="Idiomas e níveis de fluência"></textarea>
+            </section>
+
+            <section>
+                <h2>Atividades Extracurriculares <i class="fa-solid fa-school-circle-exclamation"></i></h2>
+                <textarea id="activities" placeholder="Breve descrição de atividades voluntárias ou hobbies relevantes."></textarea>
+            </section>
+
+            <div class="buttons-container">
+                <button type="submit">Gerar Currículo</button>
+                <button type="button" id="downloadPdf">Baixar em PDF</button>
+                <button type="button" id="downloadWord">Baixar em Word</button>
+            </div>
+        </form>
+        <div id="resumePreview"></div>
     </main>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+    <script src="script.js
